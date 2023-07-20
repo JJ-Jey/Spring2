@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:sec="//www.thymeleaf.org/extras/spring-security">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+
+	<body>
+		
+		<span sec:authorize="isAuthenticated()">
+
+			<!-- username -->
+			<span sec:authentication="name"></span>
+
+			<!-- role: 권한 등급 표시 -->
+			<!-- MyUserEntity 클래스의 getAuthorities() 메소드 return의 파라미터와 일치해야함: prefix('ROLE_') 필수 -->
+			<span sec:authorize ="hasRole('ROLE_USER')">user</span>
+	
+			<a href="/logout">로그아웃</a>
+	
+		</span>
+		
+		<span sec:authorize="isAnonymous()">
+			<a href="/login">로그인</a>
+		</span>
+		
+		<a href="/signup">회원가입</a>
+		
+		<hr>
+		
+		<h1>인덱스 페이지</h1>
+	</body>
+
+</html>
